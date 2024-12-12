@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
 
 return [
+    'api_key' => env('API_KEY'),
 
     /*
     |--------------------------------------------------------------------------

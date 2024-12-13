@@ -39,6 +39,7 @@
                                             {{$car->description}}
                                         </td>
                                         <td class="px-6 py-4 text-right">
+                                            <x-forms.button href="{{route('cars.show', $car)}}" text="View"></x-forms.button>
                                             <x-forms.button href="{{route('cars.edit', $car)}}" text="Edit"></x-forms.button>
                                         </td>
                                     </tr>

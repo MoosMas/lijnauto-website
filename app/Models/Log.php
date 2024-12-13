@@ -8,16 +8,24 @@ use Illuminate\Database\Eloquent\Model;
 class Log extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'logs';
-    
+
+    protected $fillable = ['car_id', 'checkpoint_color', 'timestamp'];
+
     public $timestamps = false;
-    
+
     protected $casts = [
         'timestamp' => 'datetime'
     ];
 
-    public function car() {
+    /**
+     * Get car associated with the log
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function car()
+    {
         return $this->belongsTo(Car::class);
     }
 }

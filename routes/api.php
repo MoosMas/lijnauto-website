@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\v1\CarController;
+use App\Http\Controllers\Api\v1\LogController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('v1')->group(function() {
     Route::apiResource('cars', CarController::class)->except('destroy');
+    Route::apiResource('logs', LogController::class)->except(['destroy', 'update']);
 });

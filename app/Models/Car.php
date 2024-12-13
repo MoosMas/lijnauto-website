@@ -8,10 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Car extends Model
 {
     use HasFactory;
-    
+
     protected $table = 'cars';
-    
-    public function logs(){
+    protected $fillable = ['name', 'description'];
+
+    /**
+     * Get all logs associated with the car
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function logs()
+    {
         return $this->hasMany(Log::class);
     }
 }

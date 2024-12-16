@@ -10,7 +10,7 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
-                    <div class="flex justify-between mb-5">
+                    <div class="flex gap-16 items-center justify-between mb-5">
                         <x-flash-message/>
                         <x-forms.button href="{{route('cars.create')}}" class="ms-auto" type="default" text="Nieuwe auto"/>
                     </div>

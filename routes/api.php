@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('v1')->group(function() {
+Route::prefix('v1')->middleware('bearer.token')->group(function() {
     Route::apiResource('cars', CarController::class)->except('destroy');
     Route::apiResource('logs', LogController::class)->except(['destroy', 'update']);
 });

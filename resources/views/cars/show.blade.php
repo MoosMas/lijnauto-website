@@ -9,7 +9,7 @@
 		<div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 			<div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
 				<div class="p-6 text-gray-900 dark:text-gray-100">
-					<div class="flex justify-between basis-1/2">
+					<div class="flex gap-24 justify-between basis-1/2">
 
 						<div class="w-1/3 h-fit inline p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
 							<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$car->name}}</h5>

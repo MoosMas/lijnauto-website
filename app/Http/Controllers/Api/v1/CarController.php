@@ -33,7 +33,7 @@ class CarController extends Controller
      */
     public function show(string $id)
     {
-        $car = Car::findOrFail($id)->with(['logs:checkpoint_color,timestamp'])->get();
+        $car = Car::findOrFail($id)->load(['logs']);
 
         return response()->json($car, 200);
     }

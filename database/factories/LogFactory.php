@@ -23,7 +23,7 @@ class LogFactory extends Factory
     {
         return [
             'car_id' => Car::all()->random()->id,
-            'checkpoint_color' => $this->faker->colorName(),
+            'checkpoint_color' => $this->faker->randomElement(['red', 'blue']),
             'timestamp' => $this->faker->dateTimeBetween('-2 weeks', '-1 week')
         ];
     }

@@ -11,7 +11,7 @@ class Log extends Model
 
     protected $table = 'logs';
 
-    protected $fillable = ['car_id', 'checkpoint_color', 'timestamp'];
+    protected $fillable = ['car_id', 'level', 'message', 'timestamp'];
 
     public $timestamps = false;
 

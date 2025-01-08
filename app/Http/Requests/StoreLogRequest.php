@@ -26,7 +26,13 @@ class StoreLogRequest extends FormRequest
     {
         return [
             'car_id' => 'required|integer|exists:\App\Models\Car,id',
-            'checkpoint_color' => ['required', 'string', Rule::in(['red', 'blue'])],
+            'level' => ['required', 'string', Rule::in(['CHECKPOINT', 'INFO', 'WARNING', 'ERROR'])],
+            'message' => ['required', 'string', function ($attribute, $value, $fail) {
+                $validColors = ['red', 'green', 'blue'];
+                if (request()->input('level') === 'CHECKPOINT' && !in_array($value, $validColors)) {
+                    $fail('Wanner log level (level) gelijk is aan CHECKPOINT, moet :attribute één van de volgende waardes zijn: ' . implode(', ', $validColors));
+                }
+            }],
             'timestamp' => 'required|integer'
         ];
     }
@@ -40,9 +46,11 @@ class StoreLogRequest extends FormRequest
             'car_id.required' => ':attribute is verplicht',
             'car_id.integer' => ':attribute moet een getal zijn',
             'car_id.exists' => ':attribute bestaat niet',
-            'checkpoint_color.required' => ':attribute is verplicht',
-            'checkpoint_color.string' => ':attribute moet een string zijn',
-            'checkpoint_color.in' => ':attribute is ongeldig',
+            'level.required' => ':attribute is verplicht',
+            'level.string' => ':attribute moet een string zijn',
+            'level.in' => ':attribute moet één van de volgende waardes zijn: :values',
+            'message.required' => ':attribute is verplicht',
+            'message.string' => ':attribute moet een string zijn',
             'timestamp.required' => ':attribute is verplicht',
             'timestamp.integer' => ':attribute moet een getal zijn'
         ];
@@ -55,8 +63,9 @@ class StoreLogRequest extends FormRequest
     {
         return [
             'car_id' => 'Auto ID (car_id)',
-            'checkpoint_color' => 'Checkpoint kleur (checkpoint_color)',
-            'timestamp' => 'Timestamp (timestamp)'            
+            'level' => 'Log level (level)',
+            'message' => 'Log bericht (message)',
+            'timestamp' => 'Timestamp (timestamp)'
         ];
     }
 

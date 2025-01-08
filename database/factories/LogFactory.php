@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Car;
 use App\Models\Log;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -13,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class LogFactory extends Factory
 {
     protected $model = Log::class;
-    
+
     /**
      * Define the model's default state.
      *
@@ -21,10 +20,28 @@ class LogFactory extends Factory
      */
     public function definition(): array
     {
+        $level = $this->faker->randomElement(['CHECKPOINT', 'INFO', 'WARNING', 'ERROR']);
+        $messages = [
+            'CHECKPOINT' => [
+                $this->faker->randomElement(['red', 'green', 'blue'])
+            ],
+            'INFO' => [
+                'Ik ben aangekomen bij mijn oplaadpunt',
+                'Opdracht voltooid. Deze route duurde ' . $this->faker->numberBetween(3, 7) . ' checkpoints'
+            ],
+            'WARNING' => [
+                'Mijn pad is geblokkeerd'
+            ],
+            'ERROR' => [
+                'Mijn batterij is op ' . $this->faker->numberBetween(0, 5) . '% en ik kan niet terug naar mijn oplaadstation'
+            ]
+        ];
+
         return [
             'car_id' => Car::all()->random()->id,
-            'checkpoint_color' => $this->faker->randomElement(['red', 'blue']),
-            'timestamp' => $this->faker->dateTimeBetween('-2 weeks', '-1 week')
+            'level' => $level,
+            'message' => $this->faker->randomElement($messages[$level]),
+            'timestamp' => $this->faker->dateTimeBetween('-2 weeks', 'now')
         ];
     }
 }

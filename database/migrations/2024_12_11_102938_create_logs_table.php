@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('logs', function (Blueprint $table) {
             $table->id();
             $table->foreignId('car_id')->references('id')->on('cars');
-            $table->string('checkpoint_color');
+            $table->string('level');
+            $table->string('message');
             $table->timestamp('timestamp')->nullable();
         });
     }

@@ -14,9 +14,15 @@ class CarSeeder extends Seeder
     public function run(): void
     {
         Car::factory()
+            ->hasLogs(20)
             ->create([
                 'name' => 'Sjaak',
                 'description' => 'Onze eerste auto'
             ]);
+        
+        Car::factory()
+            ->count(5)
+            ->hasLogs(20)
+            ->create();
     }
 }

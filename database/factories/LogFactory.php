@@ -20,10 +20,10 @@ class LogFactory extends Factory
      */
     public function definition(): array
     {
-        $level = $this->faker->randomElement(['CHECKPOINT', 'INFO', 'WARNING', 'ERROR']);
+        $level = $this->faker->randomElement(Log::LEVELS);
         $messages = [
             'CHECKPOINT' => [
-                $this->faker->randomElement(['red', 'green', 'blue'])
+                $this->faker->randomElement(Log::CHECKPOINT_COLORS)
             ],
             'INFO' => [
                 'Ik ben aangekomen bij mijn oplaadpunt',

@@ -13,6 +13,16 @@ class Log extends Model
 
     protected $fillable = ['car_id', 'level', 'message', 'timestamp'];
 
+    /**
+     * Available log levels
+     */
+    public const LEVELS = ['CHECKPOINT', 'INFO', 'WARNING', 'ERROR'];
+
+    /**
+     * Available colors for checkpoint logs
+     */
+    public const CHECKPOINT_COLORS = ['red', 'green', 'blue'];
+
     public $timestamps = false;
 
     protected $casts = [

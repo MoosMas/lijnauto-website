@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Log;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -26,11 +27,10 @@ class StoreLogRequest extends FormRequest
     {
         return [
             'car_id' => 'required|integer|exists:\App\Models\Car,id',
-            'level' => ['required', 'string', Rule::in(['CHECKPOINT', 'INFO', 'WARNING', 'ERROR'])],
+            'level' => ['required', 'string', Rule::in(Log::LEVELS)],
             'message' => ['required', 'string', function ($attribute, $value, $fail) {
-                $validColors = ['red', 'green', 'blue'];
-                if (request()->input('level') === 'CHECKPOINT' && !in_array($value, $validColors)) {
-                    $fail('Wanner log level (level) gelijk is aan CHECKPOINT, moet :attribute één van de volgende waardes zijn: ' . implode(', ', $validColors));
+                if (request()->input('level') === 'CHECKPOINT' && !in_array($value, Log::CHECKPOINT_COLORS)) {
+                    $fail('Wanner log level (level) gelijk is aan CHECKPOINT, moet :attribute één van de volgende waardes zijn: ' . implode(', ', Log::CHECKPOINT_COLORS));
                 }
             }],
             'timestamp' => 'required|integer'

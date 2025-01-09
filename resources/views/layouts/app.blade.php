@@ -20,6 +20,8 @@
 				document.documentElement.classList.remove('dark')
 			}
 	    </script>
+
+        @livewireStyles
 	    
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -84,5 +86,6 @@
 
 			});
 	    </script>
+        @livewireScripts
     </body>
 </html>

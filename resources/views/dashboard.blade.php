@@ -12,7 +12,7 @@
 
                     <div class="flex gap-16 items-center justify-between mb-5">
                         <x-flash-message/>
-                        <x-forms.button href="{{route('cars.create')}}" class="ms-auto" type="default" text="Nieuwe auto"/>
+                        <x-forms.button href="{{route('cars.create')}}" class="ms-auto" color="default">Nieuwe auto</x-forms.button>
                     </div>
                     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -39,8 +39,8 @@
                                             {{$car->description}}
                                         </td>
                                         <td class="px-6 py-4 text-right">
-                                            <x-forms.button href="{{route('cars.show', $car)}}" text="View"></x-forms.button>
-                                            <x-forms.button href="{{route('cars.edit', $car)}}" text="Edit"></x-forms.button>
+                                            <x-forms.button href="{{route('cars.show', $car)}}">Bekijk</x-forms.button>
+                                            <x-forms.button href="{{route('cars.edit', $car)}}">Bewerk</x-forms.button>
                                         </td>
                                     </tr>
                                 @endforeach

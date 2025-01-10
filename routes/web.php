@@ -27,7 +27,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('cars', CarController::class)->except('index');
+Route::resource('cars', CarController::class)->except('index')->middleware(['auth', 'verified']);
 Route::get('/cars', function () {
     return redirect()->route('dashboard');
 });

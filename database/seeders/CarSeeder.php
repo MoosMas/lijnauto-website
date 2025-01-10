@@ -14,7 +14,7 @@ class CarSeeder extends Seeder
     public function run(): void
     {
         Car::factory()
-            ->hasLogs(20)
+            ->hasLogs(50)
             ->create([
                 'name' => 'Sjaak',
                 'description' => 'Onze eerste auto'
@@ -22,7 +22,7 @@ class CarSeeder extends Seeder
         
         Car::factory()
             ->count(5)
-            ->hasLogs(20)
+            ->hasLogs(50)
             ->create();
     }
 }

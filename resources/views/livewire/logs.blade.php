@@ -31,7 +31,7 @@
 					</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody wire:poll>
 				@foreach($logs as $log)
 					<tr wire:key="{{ $log->id }}"
 					    class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">

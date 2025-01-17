@@ -15,7 +15,7 @@
 								<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $car->name }}</h5>
 								<p class="font-normal text-gray-700 dark:text-gray-400">{{ $car->description }}</p>
 
-								<x-arduino-controls/>
+								@livewire('arduino-controls')
 							</div>
 							<div class="my-3">
 								<h3 class="my-2 text-2xl font-bold dark:text-white">Logs in de afgelopen 24 uur</h3>
@@ -33,7 +33,7 @@
 										<x-slot:body>Warnings</x-slot:body>
 									</x-stats-card>
 									<x-stats-card color="red" level="ERROR">
-										<x-slot:title>{{ $car->logLevel('ERROR')->Last24Hours()->count() }}</x-slot:title>
+										<x-slot:title wire:poll>{{ $car->logLevel('ERROR')->Last24Hours()->count() }}</x-slot:title>
 										<x-slot:body>Errors</x-slot:body>
 									</x-stats-card>
 								</div>

@@ -19,10 +19,12 @@ class CarSeeder extends Seeder
                 'name' => 'Sjaak',
                 'description' => 'Onze eerste auto'
             ]);
-        
-        Car::factory()
-            ->count(5)
-            ->hasLogs(50)
-            ->create();
+
+        if (config('app.debug')) {
+            Car::factory()
+                ->count(5)
+                ->hasLogs(50)
+                ->create();
+        }
     }
 }

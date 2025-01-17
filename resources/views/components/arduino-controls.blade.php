@@ -4,7 +4,7 @@
 
 	<script>
 		function sendCommand( action ) {
-			let request = fetch( 'https://robofontys.duckdns.org/udp_forwarder.php', {
+			let request = fetch( 'https://robofontys.duckdns.org/udp_forwarderTestV2.php', {
 				method: 'POST',
 				body: 'action=' + action,
 				headers: {

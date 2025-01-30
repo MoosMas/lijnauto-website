@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreLogRequest;
+use App\Http\Resources\LogCollection;
+use App\Http\Resources\LogResource;
 use App\Models\Log;
 use Illuminate\Http\Request;
 
@@ -14,8 +16,7 @@ class LogController extends Controller
      */
     public function index()
     {
-        $logs = Log::all();
-        return response()->json($logs, 200);
+        return new LogCollection(Log::with('car')->paginate(15));
     }
 
     /**
@@ -33,9 +34,7 @@ class LogController extends Controller
      */
     public function show(string $id)
     {
-        $log = Log::findOrFail($id)->load('car');
-
-        return response()->json($log, 200);
+        return new LogResource(Log::with('car')->findOrFail($id));
     }
 
     /**

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCarRequest;
+use App\Http\Resources\CarCollection;
+use App\Http\Resources\CarResource;
 use App\Models\Car;
 use Illuminate\Http\Request;
 
@@ -14,8 +16,7 @@ class CarController extends Controller
      */
     public function index()
     {
-        $cars = Car::all();
-        return response()->json($cars, 200);
+        return new CarCollection(Car::paginate(15));
     }
 
     /**
@@ -33,9 +34,9 @@ class CarController extends Controller
      */
     public function show(string $id)
     {
-        $car = Car::findOrFail($id)->load(['logs']);
-
-        return response()->json($car, 200);
+        $car = Car::findOrFail($id);
+        $logs = $car->logs()->paginate(15);
+        return new CarResource($car->setRelation('logs', $logs));
     }
 
     /**

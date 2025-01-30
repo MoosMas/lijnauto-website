@@ -25,16 +25,20 @@ class StoreLogRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        return array(
+            /** ID of the car associated with the log */
             'car_id' => 'required|integer|exists:\App\Models\Car,id',
-            'level' => ['required', 'string', Rule::in(Log::LEVELS)],
-            'message' => ['required', 'string', function ($attribute, $value, $fail) {
+            /** Level of the log */
+            'level' => array('required', 'string', Rule::in(Log::LEVELS)),
+            /** Message of the log. When the log level is equal to CHECKPOINT, the message must be one of the following values: `red`, `green`, `blue`. */
+            'message' => array('required', 'string', function ($attribute, $value, $fail) {
                 if (request()->input('level') === 'CHECKPOINT' && !in_array($value, Log::CHECKPOINT_COLORS)) {
-                    $fail('Wanner log level (level) gelijk is aan CHECKPOINT, moet :attribute één van de volgende waardes zijn: ' . implode(', ', Log::CHECKPOINT_COLORS));
+                    $fail('Wanneer log level (level) gelijk is aan CHECKPOINT, moet :attribute één van de volgende waardes zijn: ' . implode(', ', Log::CHECKPOINT_COLORS));
                 }
-            }],
+            }),
+            /** Unix timestamp the log is created on */
             'timestamp' => 'required|integer'
-        ];
+        );
     }
 
     /**

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\ProfileController;
+use Dedoc\Scramble\Scramble;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +31,11 @@ Route::middleware('auth')->group(function () {
 Route::resource('cars', CarController::class)->except('index')->middleware(['auth', 'verified']);
 Route::get('/cars', function () {
     return redirect()->route('dashboard');
+});
+
+Route::domain(env('APP_URL'))->group(function () {
+    Scramble::registerUiRoute('scramble');
+    Scramble::registerJsonSpecificationRoute('api.json');
 });
 
 require __DIR__ . '/auth.php';
